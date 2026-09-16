@@ -17,6 +17,9 @@ function calculate(event){
         case "Divide":
             result = num1 / num2;
             break;
+        case "Modulus":
+            result = num1 % num2;
+            break;
         default:
             result = "Invalid operation";
     }
