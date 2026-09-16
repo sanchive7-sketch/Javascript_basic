@@ -1,0 +1,10 @@
+let now = new Date();
+console.log(now);
+console.log(now.getFullYear());
+console.log(now.getMonth() + 1);
+console.log(now.getDate());
+console.log(now.getHours());
+console.log(now.getMinutes());
+let dob = new Date("2005-01-15");
+console.log(dob.toDateString());
+console.log(Date.now());

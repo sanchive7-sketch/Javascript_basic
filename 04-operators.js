@@ -1,0 +1,15 @@
+let a = 10, b = 3;
+console.log(a + b);
+console.log(a - b);
+console.log(a * b);
+console.log(a / b);
+console.log(a % b);
+console.log(a ** b);
+console.log(a > b);
+console.log(a === 10 && b === 3);
+console.log(a === 10 || b === 5);
+console.log(!(a === b));
+a += 5;
+console.log(a);
+let result = a > 10 ? "big" : "small";
+console.log(result);

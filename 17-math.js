@@ -1,0 +1,11 @@
+console.log(Math.PI);
+console.log(Math.round(4.6));
+console.log(Math.floor(4.9));
+console.log(Math.ceil(4.1));
+console.log(Math.max(1, 5, 3));
+console.log(Math.min(1, 5, 3));
+console.log(Math.floor(Math.random() * 10) + 1);
+console.log(Math.sqrt(16));
+console.log(Math.pow(2, 3));
+let otp = Math.floor(1000 + Math.random() * 9000);
+console.log(otp);

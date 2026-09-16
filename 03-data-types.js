@@ -1,0 +1,15 @@
+let str = "Hello";
+let num = 42;
+let floatNum = 3.14;
+let bool = true;
+let undef;
+let nul = null;
+let big = 12345678901234567890n;
+let sym = Symbol("id");
+console.log(typeof str);
+console.log(typeof num);
+console.log(typeof bool);
+console.log(typeof undef);
+console.log(typeof nul);
+console.log(typeof big);
+console.log(typeof sym);

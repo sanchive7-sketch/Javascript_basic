@@ -1,0 +1,12 @@
+let text = "JavaScript is fun";
+console.log(text.length);
+console.log(text.toUpperCase());
+console.log(text.toLowerCase());
+console.log(text.includes("fun"));
+console.log(text.indexOf("Script"));
+console.log(text.slice(0, 10));
+console.log(text.split(" "));
+console.log(text.replace("fun", "awesome"));
+let a = "Hello", b = "World";
+console.log(a + " " + b);
+console.log(`${a} ${b}!`);

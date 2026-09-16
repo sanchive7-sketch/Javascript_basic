@@ -1,0 +1,15 @@
+let fruits = ["apple", "banana", "mango"];
+console.log(fruits[0]);
+console.log(fruits.length);
+fruits.push("orange");
+console.log(fruits);
+fruits.pop();
+console.log(fruits);
+fruits.unshift("grape");
+console.log(fruits);
+fruits.shift();
+console.log(fruits);
+console.log(fruits.indexOf("banana"));
+console.log(fruits.includes("mango"));
+let sliced = fruits.slice(0, 2);
+console.log(sliced);
