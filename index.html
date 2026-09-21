@@ -3,26 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KIOT JavaScript Class</title>
-    <script src="index.js"></script>
+    <meta name="description" content="A simple JavaScript learning dashboard.">
+    <title>JS Learning Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js" defer></script>
 </head>
 <body>
-    <h1>Welcome to the KIOT JavaScript Class</h1>
-    <p>This is a simple HTML page for the KIOT JavaScript class.</p>
-    <ul>
-        <li>Introduction to JavaScript</li>
-    </ul>
-    Number A: <input type="number" id="numberA" placeholder="Enter number A">
-    <br>
-    Number B: <input type="number" id="numberB" placeholder="Enter number B">
-    <br>
-    <input type="button" value="Add" onclick="calculate(event)">
-    <input type="button" value="Subtract" onclick="calculate(event)">
-    <input type="button" value="Multiply" onclick="calculate(event)">
-    <input type="button" value="Divide" onclick="calculate(event)">
-    <input type="button" value="Modulus" onclick="calculate(event)">
-    <p id="result"></p>
-   
-    
+    <main class="dashboard">
+        <aside class="sidebar">
+            <a class="brand" href="#top" aria-label="JavaScript learning dashboard home"><span class="brand-mark">JS</span><span>learn<span>.</span>js</span></a>
+            <nav aria-label="Dashboard navigation">
+                <a class="nav-link active" href="#top"><span>⌂</span> Dashboard</a>
+                <a class="nav-link" href="#lessons"><span>◫</span> Lessons</a>
+                <a class="nav-link" href="#playground"><span>⌘</span> Playground</a>
+            </nav>
+            <div class="sidebar-note">
+                <p class="eyebrow">Learning path</p><strong>JavaScript basics</strong>
+                <div class="mini-progress"><span id="sidebarProgress"></span></div>
+                <p><span id="completedCount">0</span> of <span id="lessonTotal">6</span> lessons complete</p>
+            </div>
+        </aside>
+
+        <section class="content" id="top">
+            <header class="topbar">
+                <div><p class="eyebrow">Your learning space</p><h1>Good morning, learner.</h1></div>
+                <div class="avatar" title="Your profile">S</div>
+            </header>
+
+            <section class="hero-card" aria-labelledby="continue-title">
+                <div>
+                    <p class="eyebrow">Continue learning</p><h2 id="continue-title">Make JavaScript do the work.</h2>
+                    <p>Build confidence with variables, conditions, loops, and functions — one small program at a time.</p>
+                    <a class="primary-button" href="#lessons">View lessons <span>→</span></a>
+                </div>
+                <div class="hero-code" aria-hidden="true"><span class="code-dim">const</span> progress = <span class="code-string">'growing'</span>;<br><span class="code-dim">while</span> (learning) {<br>&nbsp;&nbsp;practice();<br>}</div>
+            </section>
+
+            <section class="stats-grid" aria-label="Learning statistics">
+                <article class="stat-card"><span class="stat-icon orange">↗</span><div><p>Lessons completed</p><strong id="statCompleted">0</strong><small>Keep going!</small></div></article>
+                <article class="stat-card"><span class="stat-icon teal">⌁</span><div><p>Practice sessions</p><strong id="practiceCount">0</strong><small>Try the calculator</small></div></article>
+                <article class="stat-card"><span class="stat-icon purple">◷</span><div><p>Study streak</p><strong>1 day</strong><small>Start your streak today</small></div></article>
+            </section>
+
+            <div class="main-grid">
+                <section class="panel lessons-panel" id="lessons" aria-labelledby="lessons-title">
+                    <div class="panel-heading"><div><p class="eyebrow">Course library</p><h2 id="lessons-title">Your next lessons</h2></div><button class="text-button" id="resetProgress" type="button">Reset progress</button></div>
+                    <div class="lesson-list" id="lessonList">
+                        <article class="lesson-card" data-lesson="01-hello-world.js"><span class="lesson-number">01</span><div><h3>Hello, JavaScript</h3><p>Start with your first output.</p></div><button class="complete-button" type="button">Mark done</button></article>
+                        <article class="lesson-card" data-lesson="03-data-types.js"><span class="lesson-number">02</span><div><h3>Variables &amp; data types</h3><p>Store and work with information.</p></div><button class="complete-button" type="button">Mark done</button></article>
+                        <article class="lesson-card" data-lesson="05-if-else.js"><span class="lesson-number">03</span><div><h3>Decisions with if / else</h3><p>Make your program respond.</p></div><button class="complete-button" type="button">Mark done</button></article>
+                        <article class="lesson-card" data-lesson="07-for-loop.js"><span class="lesson-number">04</span><div><h3>Loops</h3><p>Repeat tasks with less code.</p></div><button class="complete-button" type="button">Mark done</button></article>
+                        <article class="lesson-card" data-lesson="10-functions.js"><span class="lesson-number">05</span><div><h3>Functions</h3><p>Write reusable instructions.</p></div><button class="complete-button" type="button">Mark done</button></article>
+                        <article class="lesson-card" data-lesson="12-arrays.js"><span class="lesson-number">06</span><div><h3>Arrays</h3><p>Organize lists of values.</p></div><button class="complete-button" type="button">Mark done</button></article>
+                    </div>
+                </section>
+
+                <section class="panel calculator-panel" id="playground" aria-labelledby="calculator-title">
+                    <div class="panel-heading"><div><p class="eyebrow">JavaScript playground</p><h2 id="calculator-title">Quick calculator</h2></div><span class="live-pill">● LIVE</span></div>
+                    <p class="panel-intro">This uses the same JavaScript operations from your original class page.</p>
+                    <label for="numberA">Number A</label><input type="number" id="numberA" placeholder="e.g. 12" step="any">
+                    <label for="numberB">Number B</label><input type="number" id="numberB" placeholder="e.g. 4" step="any">
+                    <div class="calculator-actions" aria-label="Calculator operations"><button type="button" data-operation="Add">+</button><button type="button" data-operation="Subtract">−</button><button type="button" data-operation="Multiply">×</button><button type="button" data-operation="Divide">÷</button><button type="button" data-operation="Modulus">%</button></div>
+                    <output id="result" class="result" aria-live="polite">Enter two numbers to begin.</output>
+                </section>
+            </div>
+        </section>
+    </main>
 </body>
 </html>
