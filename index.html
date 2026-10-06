@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A simple JavaScript learning dashboard.">
-    <title>JS Learning Dashboard</title>
+    <meta name="description" content="A simple supermarket operations dashboard made with JavaScript.">
+    <title>FreshCart Market Dashboard</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2314473f'/%3E%3Cpath d='M9 12h14l-1.4 10H11L9 12Z' fill='%23d8f16c'/%3E%3Cpath d='M12 12a4 4 0 0 1 8 0' fill='none' stroke='%23d8f16c' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -12,65 +13,107 @@
     <script src="index.js" defer></script>
 </head>
 <body>
-    <main class="dashboard">
+    <main class="app-shell">
         <aside class="sidebar">
-            <a class="brand" href="#top" aria-label="JavaScript learning dashboard home"><span class="brand-mark">JS</span><span>learn<span>.</span>js</span></a>
+            <a class="brand" href="#overview" aria-label="FreshCart Market dashboard home">
+                <span class="brand-mark">FC</span>
+                <span>freshcart<span>market</span></span>
+            </a>
+
             <nav aria-label="Dashboard navigation">
-                <a class="nav-link active" href="#top"><span>⌂</span> Dashboard</a>
-                <a class="nav-link" href="#lessons"><span>◫</span> Lessons</a>
-                <a class="nav-link" href="#playground"><span>⌘</span> Playground</a>
+                <a class="nav-link active" href="#overview"><span>▦</span> Overview</a>
+                <a class="nav-link" href="#orders"><span>▤</span> Orders <b id="orderBadge">3</b></a>
+                <a class="nav-link" href="#inventory"><span>▣</span> Inventory</a>
+                <a class="nav-link" href="#sales"><span>◌</span> Sales</a>
             </nav>
-            <div class="sidebar-note">
-                <p class="eyebrow">Learning path</p><strong>JavaScript basics</strong>
-                <div class="mini-progress"><span id="sidebarProgress"></span></div>
-                <p><span id="completedCount">0</span> of <span id="lessonTotal">6</span> lessons complete</p>
+
+            <div class="store-card">
+                <span class="store-dot"></span>
+                <div><strong>Downtown store</strong><small>Open · 8:00 AM–10:00 PM</small></div>
             </div>
         </aside>
 
-        <section class="content" id="top">
+        <section class="workspace" id="overview">
             <header class="topbar">
-                <div><p class="eyebrow">Your learning space</p><h1>Good morning, learner.</h1></div>
-                <div class="avatar" title="Your profile">S</div>
+                <div>
+                    <p class="eyebrow">Store performance</p>
+                    <h1>Good morning, Ananya</h1>
+                </div>
+                <div class="top-actions">
+                    <button class="icon-button" id="notificationButton" type="button" aria-label="Show inventory alerts"><span aria-hidden="true">♧</span><i></i></button>
+                    <div class="profile" aria-label="Manager profile">AK</div>
+                </div>
             </header>
 
-            <section class="hero-card" aria-labelledby="continue-title">
+            <section class="summary-bar" aria-label="Today’s sales summary">
                 <div>
-                    <p class="eyebrow">Continue learning</p><h2 id="continue-title">Make JavaScript do the work.</h2>
-                    <p>Build confidence with variables, conditions, loops, and functions — one small program at a time.</p>
-                    <a class="primary-button" href="#lessons">View lessons <span>→</span></a>
+                    <p>Today’s sales</p>
+                    <strong id="todaySales">₹42,860</strong>
+                    <small class="positive">+12.4% <span>vs. yesterday</span></small>
                 </div>
-                <div class="hero-code" aria-hidden="true"><span class="code-dim">const</span> progress = <span class="code-string">'growing'</span>;<br><span class="code-dim">while</span> (learning) {<br>&nbsp;&nbsp;practice();<br>}</div>
+                <div class="summary-divider"></div>
+                <div>
+                    <p>Orders received</p>
+                    <strong id="ordersReceived">126</strong>
+                    <small>18 waiting to pack</small>
+                </div>
+                <div class="summary-divider"></div>
+                <div>
+                    <p>Average basket</p>
+                    <strong>₹340</strong>
+                    <small class="positive">+₹28 <span>this week</span></small>
+                </div>
+                <button class="new-order-button" id="newOrderButton" type="button">+ New order</button>
             </section>
 
-            <section class="stats-grid" aria-label="Learning statistics">
-                <article class="stat-card"><span class="stat-icon orange">↗</span><div><p>Lessons completed</p><strong id="statCompleted">0</strong><small>Keep going!</small></div></article>
-                <article class="stat-card"><span class="stat-icon teal">⌁</span><div><p>Practice sessions</p><strong id="practiceCount">0</strong><small>Try the calculator</small></div></article>
-                <article class="stat-card"><span class="stat-icon purple">◷</span><div><p>Study streak</p><strong>1 day</strong><small>Start your streak today</small></div></article>
-            </section>
-
-            <div class="main-grid">
-                <section class="panel lessons-panel" id="lessons" aria-labelledby="lessons-title">
-                    <div class="panel-heading"><div><p class="eyebrow">Course library</p><h2 id="lessons-title">Your next lessons</h2></div><button class="text-button" id="resetProgress" type="button">Reset progress</button></div>
-                    <div class="lesson-list" id="lessonList">
-                        <article class="lesson-card" data-lesson="01-hello-world.js"><span class="lesson-number">01</span><div><h3>Hello, JavaScript</h3><p>Start with your first output.</p></div><button class="complete-button" type="button">Mark done</button></article>
-                        <article class="lesson-card" data-lesson="03-data-types.js"><span class="lesson-number">02</span><div><h3>Variables &amp; data types</h3><p>Store and work with information.</p></div><button class="complete-button" type="button">Mark done</button></article>
-                        <article class="lesson-card" data-lesson="05-if-else.js"><span class="lesson-number">03</span><div><h3>Decisions with if / else</h3><p>Make your program respond.</p></div><button class="complete-button" type="button">Mark done</button></article>
-                        <article class="lesson-card" data-lesson="07-for-loop.js"><span class="lesson-number">04</span><div><h3>Loops</h3><p>Repeat tasks with less code.</p></div><button class="complete-button" type="button">Mark done</button></article>
-                        <article class="lesson-card" data-lesson="10-functions.js"><span class="lesson-number">05</span><div><h3>Functions</h3><p>Write reusable instructions.</p></div><button class="complete-button" type="button">Mark done</button></article>
-                        <article class="lesson-card" data-lesson="12-arrays.js"><span class="lesson-number">06</span><div><h3>Arrays</h3><p>Organize lists of values.</p></div><button class="complete-button" type="button">Mark done</button></article>
+            <section class="dashboard-grid">
+                <article class="panel sales-panel" id="sales">
+                    <div class="panel-heading">
+                        <div><p class="eyebrow">Sales overview</p><h2>Revenue this week</h2></div>
+                        <div class="segment-control" aria-label="Revenue period">
+                            <button class="period-button active" type="button" data-period="week">Week</button>
+                            <button class="period-button" type="button" data-period="month">Month</button>
+                        </div>
                     </div>
-                </section>
+                    <div class="chart-summary"><strong id="chartTotal">₹2.96L</strong><span id="chartDifference">+8.2% from last week</span></div>
+                    <div class="chart-wrap">
+                        <div class="y-labels" aria-hidden="true"><span>₹60k</span><span>₹40k</span><span>₹20k</span><span>₹0</span></div>
+                        <svg class="sales-chart" viewBox="0 0 680 218" role="img" aria-labelledby="chart-title chart-description">
+                            <title id="chart-title">Weekly sales chart</title><desc id="chart-description">Sales total for Monday through Sunday.</desc>
+                            <g class="grid-lines"><line x1="0" y1="15" x2="680" y2="15"/><line x1="0" y1="80" x2="680" y2="80"/><line x1="0" y1="145" x2="680" y2="145"/><line x1="0" y1="210" x2="680" y2="210"/></g>
+                            <path id="chartArea" d="M12,178 C48,158 66,143 104,148 S164,128 198,141 S252,79 293,94 S343,117 388,100 S438,40 480,56 S536,92 574,72 S637,20 668,36 L668,210 L12,210 Z"/>
+                            <path id="chartLine" d="M12,178 C48,158 66,143 104,148 S164,128 198,141 S252,79 293,94 S343,117 388,100 S438,40 480,56 S536,92 574,72 S637,20 668,36"/>
+                            <circle id="chartPoint" cx="668" cy="36" r="5"/>
+                        </svg>
+                        <div class="x-labels" aria-hidden="true"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+                    </div>
+                </article>
 
-                <section class="panel calculator-panel" id="playground" aria-labelledby="calculator-title">
-                    <div class="panel-heading"><div><p class="eyebrow">JavaScript playground</p><h2 id="calculator-title">Quick calculator</h2></div><span class="live-pill">● LIVE</span></div>
-                    <p class="panel-intro">This uses the same JavaScript operations from your original class page.</p>
-                    <label for="numberA">Number A</label><input type="number" id="numberA" placeholder="e.g. 12" step="any">
-                    <label for="numberB">Number B</label><input type="number" id="numberB" placeholder="e.g. 4" step="any">
-                    <div class="calculator-actions" aria-label="Calculator operations"><button type="button" data-operation="Add">+</button><button type="button" data-operation="Subtract">−</button><button type="button" data-operation="Multiply">×</button><button type="button" data-operation="Divide">÷</button><button type="button" data-operation="Modulus">%</button></div>
-                    <output id="result" class="result" aria-live="polite">Enter two numbers to begin.</output>
-                </section>
-            </div>
+                <article class="panel stock-panel" id="inventory">
+                    <div class="panel-heading"><div><p class="eyebrow">Stock watch</p><h2>Inventory alerts</h2></div><span class="alert-count" id="alertCount">3 items</span></div>
+                    <p class="panel-copy">These products need attention before the next delivery.</p>
+                    <ul class="stock-list" id="stockList">
+                        <li data-item="Organic milk"><span class="product-icon milk">M</span><div><strong>Organic milk</strong><small>8 cartons left</small></div><button class="restock-button" type="button">Restock</button></li>
+                        <li data-item="Red apples"><span class="product-icon apple">A</span><div><strong>Red apples</strong><small>12 kg left</small></div><button class="restock-button" type="button">Restock</button></li>
+                        <li data-item="Whole wheat bread"><span class="product-icon bread">B</span><div><strong>Whole wheat bread</strong><small>5 loaves left</small></div><button class="restock-button" type="button">Restock</button></li>
+                    </ul>
+                    <button class="wide-button" id="viewInventory" type="button">View all inventory</button>
+                </article>
+
+                <article class="panel orders-panel" id="orders">
+                    <div class="panel-heading"><div><p class="eyebrow">Fulfilment</p><h2>Recent orders</h2></div><button class="text-button" id="markAllPacked" type="button">Mark all packed</button></div>
+                    <div class="order-table-wrap"><table><thead><tr><th>Order</th><th>Customer</th><th>Total</th><th>Status</th></tr></thead><tbody id="orderTableBody"></tbody></table></div>
+                </article>
+
+                <article class="panel category-panel">
+                    <div class="panel-heading"><div><p class="eyebrow">Top category</p><h2>Fresh produce</h2></div><span class="category-badge">38% sales</span></div>
+                    <p class="panel-copy">Produce is leading sales today, with fruit bundles up 16% from yesterday.</p>
+                    <div class="category-meter"><span></span></div>
+                    <div class="category-stats"><span><b>₹16,294</b> revenue</span><span><b>348</b> items sold</span></div>
+                </article>
+            </section>
         </section>
     </main>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
